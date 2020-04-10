@@ -96,7 +96,10 @@ if __name__ == "__main__":
 		# Get the last proof from the server
 		r = requests.get(url=node + "/last_proof")
 
-		data = r.json()		# incoming float
+		try:
+			data = r.json()
+		except ValueError:
+			break
 		
 		new_proof = proof_of_work(data.get("proof"))
 
@@ -106,7 +109,7 @@ if __name__ == "__main__":
 		data = r.json()
 		if data.get("message") == "New Block Forged":
 			coins_mined += 1
-			print("Total coins mined: " + str(coins_mined))
+			print("\n\nTotal coins mined: " + str(coins_mined)+"\n\n")
 		else:
 			print(data.get("message"))
 		
