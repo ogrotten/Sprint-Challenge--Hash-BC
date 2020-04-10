@@ -9,17 +9,19 @@ from hashtables import (HashTable,
 def get_indices_of_item_weights(weights, length, limit):
 	ht = HashTable(16)
 
-	for i, weight in enumerate(weights):
-		hash_table_insert(ht, weight, i)
+	# for i, weight in enumerate(weights):
+	# 	hash_table_insert(ht, weight, i)
 
-	for weight in weights:
-		inhand = hash_table_retrieve(ht, weight)
-		found = None
-		looking = limit - weight
-		found = hash_table_retrieve(ht, looking)
-		print (20, found, inhand)
-		if found != None:
-			return (max(found, inhand), min(found, inhand))
+	# for weight in weights:
+	# 	inhand = hash_table_retrieve(ht, weight)
+	# 	found = None
+	# 	looking = limit - weight
+	# 	found = hash_table_retrieve(ht, looking)
+	# 	print (20, found, inhand)
+	# 	if found != None:
+	# 		return (max(found, inhand), min(found, inhand))
+
+	
 
 	return None
 
