@@ -45,13 +45,14 @@ def valid_proof(last_proof, proof):
 	last_proof_prep = f"{last_proof}".encode()
 	last_hash = hashlib.sha256(last_proof_prep).hexdigest()
 
-	guess = f"{last_hash}{proof}".encode()
+	# guess = f"{last_hash}{proof}".encode()
+	guess = f"{proof}".encode()
 	guess_hash = hashlib.sha256(guess).hexdigest()
 
-	print(51, last_hash[-5:], guesh_hash[:5])
-	print(52, last_hash[-5:] == guesh_hash[:5])
+	# print(51, last_hash[-5:], guess_hash[:5])
+	# print(52, last_hash[-5:] == guess_hash[:5])
 
-	return last_hash[-5:] == guesh_hash[:5]
+	return last_hash[-5:] == guess_hash[:5]
 
 
 	
@@ -68,15 +69,15 @@ if __name__ == "__main__":
 	# else:
 	
 	# REAL NODE
-	# node = "https://lambda-coin.herokuapp.com/api"
+	node = "https://lambda-coin.herokuapp.com/api"
 
-	TESTING ONLY 
-	node = "https://lambda-coin-test-1.herokuapp.com/api"
+	# # TESTING ONLY 
+	# node = "https://lambda-coin-test-1.herokuapp.com/api"
 
 	coins_mined = 0
 
 	# Load or create ID
-	f = open("./blockchain/my_id.txt", "r")
+	f = open("my_id.txt", "r")
 	id = f.read()
 	print("ID is", id)
 	f.close()
@@ -109,7 +110,7 @@ if __name__ == "__main__":
 		else:
 			print(data.get("message"))
 		
-		count += 1
+		# count += 1
 		
-		if count > 2:
-			break
+		# if count > 10:
+		# 	break
