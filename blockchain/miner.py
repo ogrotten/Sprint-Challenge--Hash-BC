@@ -33,7 +33,7 @@ def proof_of_work(last_proof):
 	return proof
 
 
-def valid_proof(last_hash, proof):
+def valid_proof(last_proof, proof):
 	"""
 	Validates the Proof:  Multi-ouroborus:  Do the last five characters of
 	the hash of the last proof match the first five characters of the hash
@@ -41,9 +41,20 @@ def valid_proof(last_hash, proof):
 
 	IE:  last_hash: ...AE912345, new hash 12345E88...
 	"""
-	
+
+	last_proof_prep = f"{last_proof}".encode()
+	last_hash = hashlib.sha256(last_proof_prep).hexdigest()
+
 	guess = f"{last_hash}{proof}".encode()
 	guess_hash = hashlib.sha256(guess).hexdigest()
+
+	print(51, last_hash[-5:], guesh_hash[:5])
+	print(52, last_hash[-5:] == guesh_hash[:5])
+
+	return last_hash[-5:] == guesh_hash[:5]
+
+
+	
 
 	
 
@@ -56,7 +67,11 @@ if __name__ == "__main__":
 	#     node = sys.argv[1]
 	# else:
 	
-	node = "https://lambda-coin.herokuapp.com/api"
+	# REAL NODE
+	# node = "https://lambda-coin.herokuapp.com/api"
+
+	TESTING ONLY 
+	node = "https://lambda-coin-test-1.herokuapp.com/api"
 
 	coins_mined = 0
 
@@ -81,7 +96,7 @@ if __name__ == "__main__":
 		r = requests.get(url=node + "/last_proof")
 
 		data = r.json()		# incoming float
-
+		
 		new_proof = proof_of_work(data.get("proof"))
 
 		post_data = {"proof": new_proof, "id": id}
