@@ -68,11 +68,11 @@ if __name__ == "__main__":
 	#     node = sys.argv[1]
 	# else:
 	
-	# REAL NODE
-	node = "https://lambda-coin.herokuapp.com/api"
+	# # REAL NODE
+	# node = "https://lambda-coin.herokuapp.com/api"
 
-	# # TESTING ONLY 
-	# node = "https://lambda-coin-test-1.herokuapp.com/api"
+	# TESTING ONLY 
+	node = "https://lambda-coin-test-1.herokuapp.com/api"
 
 	coins_mined = 0
 
@@ -99,7 +99,8 @@ if __name__ == "__main__":
 		try:
 			data = r.json()
 		except ValueError:
-			break
+			print("\n>>>JSON ERROR\n")
+			continue
 		
 		new_proof = proof_of_work(data.get("proof"))
 
